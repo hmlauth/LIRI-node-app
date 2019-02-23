@@ -26,7 +26,7 @@ if (input1 === "spotify-this-song") {
 
 function getSpotifyInfo() {
     if (input2 === "") {
-        input2 = "Never Want to Give You Up"
+        input2 = "The Sign, Ace of Base";
     }
     spotify.search({
         type: 'track',
@@ -108,14 +108,12 @@ function readRandomFile() {
         if (error) {
             return console.log(error);
         };
-
-        console.log(data);
+        
         var dataArr = data.split(",");
         input1 = dataArr[0];
         input2 = dataArr[1];
-        console.log("randomInput1: " + dataArr[0]);
-        console.log("randomInput2: " + dataArr[1]);
 
         getSpotifyInfo(input2);
+
     });
 }
