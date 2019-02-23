@@ -6,6 +6,7 @@ var axios = require("axios");
 var moment = require("moment");
 moment().format();
 var Spotify = require("node-spotify-api");
+var fs = require("fs");
 
 var input1 = process.argv[2];
 var input2 = process.argv.slice(3).join(" ");
@@ -25,7 +26,7 @@ if (input1 === "spotify-this-song") {
 
 function getSpotifyInfo() {
     if (input2 === "") {
-        input2 = "The Sign"
+        input2 = "Never Want to Give You Up"
     }
     spotify.search({
         type: 'track',
@@ -101,3 +102,20 @@ function getMovieInfo() {
         }
     );
 };
+
+function readRandomFile() {
+    fs.readFile("random.txt","utf8", function(error, data) {
+        if (error) {
+            return console.log(error);
+        };
+
+        console.log(data);
+        var dataArr = data.split(",");
+        input1 = dataArr[0];
+        input2 = dataArr[1];
+        console.log("randomInput1: " + dataArr[0]);
+        console.log("randomInput2: " + dataArr[1]);
+
+        getSpotifyInfo(input2);
+    });
+}
