@@ -5,10 +5,27 @@ LIRI is a Language Interpretation and Recognition Interface. More specifically, 
 - https://drive.google.com/file/d/1sT4-YQOKWE5hORHVrJRwLY-f9Al2Zhp0/view (Duration: 8:54 min)
 - https://drive.google.com/file/d/1sT4-YQOKWE5hORHVrJRwLY-f9Al2Zhp0/view (Duration: 1:04 min)
 
-### App Set-Up
-LIRI is powered by NPM packages, particularly the `axios` package to the Bands in Town, Spotify and OMDB APIs. Using these APIs, LIRI searches <strong>Spotify</strong> for songs, <strong>Bands in Town</strong> for concerts, and <strong>OMDB</strong> for movies. Additional NPM packages like `inquirer` and `fs` were installed for improved functionality and also `moment` and `colors` for formatting and styling. 
+## Set-Up
+LIRI is powered by and styled with NPM packages! After running `npm init -y` &mdash; to initialize the `package.json` file &mdash; proceed installing all of the following node packages:
 
+### Node packages
+
+  * [Node-Spotify-API](https://www.npmjs.com/package/node-spotify-api)
+
+  * [Axios](https://www.npmjs.com/package/axios)
+
+  * [Moment](https://www.npmjs.com/package/moment)
+
+  * [DotEnv](https://www.npmjs.com/package/dotenv)
+
+  * [inquirer](https://www.npmjs.com/package/inquirer)
+
+  * [fs](https://www.npmjs.com/package/fs)
+
+  * [colors](https://www.npmjs.com/package/colors)
+  
 ## Files
+### `.gitignore`
 `.gitignore` file inclusive of the following lines was created to protect API keys and "secret" information.
 
 ```
@@ -17,6 +34,7 @@ node_modules
 .env
 ```
 
+### `.env`
 `.env` holds the values of my API keys and is used by the `dotenv` package to set the environment variables to the global `process.env` object in node. These are values specific to the computer on which node runs. External users will need to obtain their own spotify API key and create their own `.env` file.
 
 ```js
@@ -27,55 +45,28 @@ SPOTIFY_SECRET=your-spotify-secret
 
 ```
 
-`liri.js` is the LIRI game logic and includes the following code which reads and sets any environment variables with the dotenv package...
+### `liri.js`
+`liri.js` is the LIRI game logic and includes the following code which reads and sets any environment variables with the dotenv package and also the code required to import the `keys.js` file and access the spotify keys information.
 
 ```js
 require("dotenv").config();
+var keys = require("./keys.js");
+var spotify = new Spotify(keys.spotify);
 ```
-...as well as code required to import the `keys.js` file and access the spotify keys information..
 
-```js
-  var keys = require("./keys.js");
-  var spotify = new Spotify(keys.spotify);
- ```
-  
+### `log.txt`
 `log.txt` file currently logs all command line run, however, further development will log the output of each command line run. 
-
-## Node packages
-### Primary
-
-   * [Node-Spotify-API](https://www.npmjs.com/package/node-spotify-api)
-
-   * [Axios](https://www.npmjs.com/package/axios)
-
-     * Axios is used to grab data from the [OMDB API](http://www.omdbapi.com) and the [Bands In Town API](http://www.artists.bandsintown.com/bandsintown-api)
-
-   * [Moment](https://www.npmjs.com/package/moment)
-
-   * [DotEnv](https://www.npmjs.com/package/dotenv)
-   
-### Secondary
-
-  * [inquirer](https://www.npmjs.com/package/inquirer)
-  * [fs](https://www.npmjs.com/package/fs)
-  * [colors](https://www.npmjs.com/package/colors)
-
 
 ## How to Use Liri
 
-1. Navigate to the root of your project and run `npm init -y` &mdash; this will initialize a `package.json` file for your project. The `package.json` file is required for installing third party npm packages and saving their version numbers. If you fail to initialize a `package.json` file, it will be troublesome, and at times almost impossible for anyone else to run your code after cloning your project.
-
-liri.js can take in one of the following commands:
+liri.js takes in one of the following commands:
 
    * `concert-this`
-
    * `spotify-this-song`
-
    * `movie-this`
-
    * `do-what-it-says`
 
-### What Each Command Should Do
+### What Each Command Does
 
 1. `node liri.js concert-this <artist/band name here>`
 
@@ -127,7 +118,6 @@ liri.js can take in one of the following commands:
 2. Include confirm-validated prompts using inquirer
 `inquirer.registerPrompt('confirm-validated', require('inquirer-confirm-validated'));`
 
-### Create a README.md
 ### Add To Your Portfolio
 
 
