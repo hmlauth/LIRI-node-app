@@ -28,7 +28,7 @@ colors.setTheme({
 // FUNCTIONS
 function getInstructions() {
     console.log(colors.info.underline.bold("\nWelcome to" + " LIRI!".silly + "\n\n"));
-    console.log(colors.verbose("Enter".dim + " spotify-this-song".italic + ", ".dim + "concert-this".italic + ", ".dim + "movie-this".italic + ", or ".dim + "do-what-it-says".italic + " and then the song, concert,\n or movie that you's like more information about!\n\nFor example, try:".dim + ("\n\n\tspotify-this-song".italic + " Move that Body").bold + "\n\n\t\tor\n\n".dim + ("\tconcert-this".italic + " Ariana Grande\n").bold));
+    console.log(colors.verbose("Enter".dim + " spotify-this-song".italic + ", ".dim + "concert-this".italic + ", ".dim + "movie-this".italic + ", or ".dim + "do-what-it-says".italic + " and then the song, concert,\n or movie that you'd like more information about!\n\nFor example, try:".dim + ("\n\n\tspotify-this-song".italic + " Move that Body").bold + "\n\n\t\tor\n\n".dim + ("\tconcert-this".italic + " Ariana Grande\n").bold));
 };
 
 function getSpotifyInfo() {
