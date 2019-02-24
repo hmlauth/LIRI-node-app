@@ -69,8 +69,7 @@ liri.js takes in one of the following commands:
 ### What Each Command Does
 
 1. `node liri.js concert-this <artist/band name here>`
-
-   * This will search the Bands in Town Artist Events API (`"https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"`) for an artist and render the following information about each event to the terminal/bach window:
+- This will search the Bands in Town Artist Events API (`"https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"`) for an artist and render the following information about each event to the terminal/bach window:
     
     ```
     * Name of the venue
@@ -80,8 +79,7 @@ liri.js takes in one of the following commands:
     *If a band/artist isn't not provided or if the band/artist isn't touring, `inquirer` will prompt you to enter a new band/artist or exit out of the command so you can conduct a different search.
     
 2. `node liri.js spotify-this-song '<song name here>'`
-
-   * This will search the Spotify API for a song and render the following information about the song in the terminal/bash window:
+- This will search the Spotify API for a song and render the following information about the song in the terminal/bash window:
    
     ```
     * Artist(s)
@@ -91,9 +89,8 @@ liri.js takes in one of the following commands:
     ```
     *If no song is provided then LIRI will default to "The Sign" by Ace of Base!.
 
-3. `node liri.js movie-this '<movie name here>'`
-
-   * This will search the OMDB API for a movie and render the following information to the terminal/bash window:
+3. `node liri.js movie-this '<movie name here>'` 
+- This will search the OMDB API for a movie and render the following information to the terminal/bash window:
 
      ```
      * Title of the movie.
@@ -108,10 +105,7 @@ liri.js takes in one of the following commands:
      *If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
 
 4. `node liri.js do-what-it-says`
-
-  * Using the `fs` Node package, LIRI will take the text inside of `random.txt` and then use it to call one of LIRI's commands. This will run for any of the commands.
-
-5. All commands (and outputs) are logged to `log.txt` file.
+- Using the `fs` Node package, LIRI will take the text inside of `random.txt` and then use it to call one of LIRI's commands. This will run for any of the commands.
 
 ### Future Development
 1. Log output of each query to `log.txt` file
