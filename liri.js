@@ -58,6 +58,8 @@ function getSpotifyInfo() {
         console.log(previewLink);
         console.log(album + "\n");
 
+        addToLog(input1, input2);
+
     })
         .catch(function (err) {
             console.log(err);
@@ -95,6 +97,9 @@ function getConcertInfo() {
         console.log("\n=================================================================================\n".verbose);
         console.log((" " + input2.toUpperCase() + "'s next concert is at: ").inverse);
         console.log("\nVenue Name: ".info.dim + venueName.info + "\nVenue Location: ".info.dim + venueLocation.info + "\nDate: ".info.dim + eventDate.info + "\n");
+
+        addToLog(input1, input2);
+
         }
     })   
 };
@@ -118,6 +123,7 @@ function getMovieInfo() {
             console.log(("\n " + input2.toUpperCase() + " ").inverse + "\n");
             console.log("Title: ".info.dim + title.info + "\nRelease Year: ".info.dim + year.info + "\nIMDB Rating: ".info.dim + imdbRating.info + "\nRotten Tomatoes: ".info.dim + rating.info + "\nCountry: ".info.dim + country.info + "\nLanguage: ".info.dim + language.info + "\nPlot: ".info.dim + plot.info + "\nActors: ".info.dim + actors.info + "\n");
 
+            addToLog(input1, input2);
         }
     );
 };
@@ -134,14 +140,17 @@ function readRandomFile() {
 
         getSpotifyInfo(input2);
 
+        addToLog(input1, input2);
     });
 }
 
-// swith (action) {
-//     case "save":
-//         save();
-//         break; 
-// }
+function addToLog(input1, input2) {
+    fs.appendFile("log.txt", input1 + ": " + input2 + ";\n", function(err) {
+        if (err) {
+          return console.log(err);
+        }
+    });
+};  
 
 // METHODS
 if (!input1 && !input2 || input1 === "instructions") {
