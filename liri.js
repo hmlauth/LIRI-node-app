@@ -20,7 +20,6 @@ colors.setTheme({
     silly: 'rainbow',
     input: 'grey',
     verbose: 'cyan',
-    prompt: 'grey',
     info: 'magenta',
     warn: 'yellow',
     notice: 'green'
