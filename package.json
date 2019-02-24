@@ -1,5 +1,5 @@
 {
-  "name": "LIRI-node-app",
+  "name": "liri-node-app",
   "version": "1.0.0",
   "description": "LIRI is a Language Interpretation and Recognition Interface. LIRI will be a command line node app that takes in parameters and gives you back data.",
   "main": "index.js",
@@ -19,8 +19,11 @@
   "homepage": "https://github.com/hmlauth/LIRI-node-app#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "colors": "^1.3.3",
     "dotenv": "^6.2.0",
     "fs": "0.0.1-security",
+    "inquirer": "^6.2.2",
+    "inquirer-confirm-validated": "^1.0.0",
     "moment": "^2.24.0",
     "node-spotify-api": "^1.0.7"
   }

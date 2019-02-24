@@ -1,5 +1,4 @@
-console.log("liri.js is loaded");
-
+// dependencies
 require("dotenv").config();
 var keys = require("./keys.js");
 var axios = require("axios");
@@ -7,21 +6,30 @@ var moment = require("moment");
 moment().format();
 var Spotify = require("node-spotify-api");
 var fs = require("fs");
+var inquirer = require("inquirer");
+inquirer.registerPrompt('confirm-validated', require('inquirer-confirm-validated'));
 
+// inputs
 var input1 = process.argv[2];
 var input2 = process.argv.slice(3).join(" ");
-console.log(input2);
 
 var spotify = new Spotify(keys.spotify);
+// styling 
+var colors = require('colors');
+colors.setTheme({
+    silly: 'rainbow',
+    input: 'grey',
+    verbose: 'cyan',
+    prompt: 'grey',
+    info: 'magenta',
+    warn: 'yellow',
+    notice: 'green'
+  });
 
-if (input1 === "spotify-this-song") {
-    getSpotifyInfo();
-} else if (input1 === "concert-this") {
-    getConcertInfo();
-} else if (input1 === "movie-this") {
-    getMovieInfo();
-} else if (input1 === "do-what-it-says") {
-    readRandomFile();
+// FUNCTIONS
+function getInstructions() {
+    console.log(colors.info.underline.bold("\nWelcome to" + " LIRI!".silly + "\n\n"));
+    console.log(colors.verbose("Enter".dim + " spotify-this-song".italic + ", ".dim + "concert-this".italic + ", ".dim + "movie-this".italic + ", or ".dim + "do-what-it-says".italic + " and then the song, concert,\n or movie that you's like more information about!\n\nFor example, try:".dim + ("\n\n\tspotify-this-song".italic + " Move that Body").bold + "\n\n\t\tor\n\n".dim + ("\tconcert-this".italic + " Ariana Grande\n").bold));
 };
 
 function getSpotifyInfo() {
@@ -38,12 +46,17 @@ function getSpotifyInfo() {
         var previewLink = response.tracks.items[0].external_urls.spotify;
         var album = response.tracks.items[0].album.name;
 
-        console.log("\n=================\n");
-        console.log("Artist: " + artist);
-        console.log("Song: " + song);
-        console.log("Preview Song: " + previewLink);
-        console.log("Album Name: " + album);
-        console.log("\n=================\n");
+        console.log("\n=================================================================================\n".verbose);
+        var display = (" " + input2.toUpperCase() + " ").inverse;
+        var artist = "Artist: ".info.dim + artist.info;
+        var song = "Song: ".info.dim + song.info;
+        var previewLink = "Preview Song: ".info.dim + previewLink.info;
+        var album = "Album: ".info.dim + album.info;
+        console.log(display + "\n");
+        console.log(artist);
+        console.log(song);
+        console.log(previewLink);
+        console.log(album + "\n");
 
     })
         .catch(function (err) {
@@ -53,16 +66,24 @@ function getSpotifyInfo() {
 
 function getConcertInfo() {
     if (input2 === "") {
-        console.log("\n=================\n");
-        console.log("Please enter an artist's name")
-        console.log("\n=================\n");
+        console.log("\n=================================================================================\n".verbose);
+        console.log(" Please enter an artist's name. ".warn.bold.bgBlack + "\n")
     }
     axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=codingbootcamp").then(function (response) {
         var results = response.data;
         if (response.data.length === 0) {
-            console.log("\n=================\n");
-            console.log("This band isn't in town! Is there another that you want to see?");
-            console.log("\n=================\n");
+            console.log("\n=================================================================================\n".verbose);
+            inquirer
+                .prompt ([
+                    {
+                        type: "input",
+                        message: (("This band isn't touring right now! Try searching for a different band.\n" + "(Press ctrl c to exit and start new search)".dim).notice + "\n"),
+                        name: "new-band",
+                    }
+                ]).then(function(inquirerResponse) {
+                    input2 = inquirerResponse.newBand;
+                    getConcertInfo(input2);
+                })
         } else {
             for (i = 0; i < results.length; i++) {
                 var currentResult = results[i];
@@ -71,22 +92,21 @@ function getConcertInfo() {
                 var eventDate = moment(currentResult.datetime);
                 eventDate = eventDate.format("MM/DD/YYYY");
             }
-        console.log("\n=================\n");
-        console.log("\nVenue Name: " + venueName + "\nVenue Location: " + venueLocation + "\nDate: " + eventDate);
-        console.log("\n=================\n");
+        console.log("\n=================================================================================\n".verbose);
+        console.log((" " + input2.toUpperCase() + "'s next concert is at: ").inverse);
+        console.log("\nVenue Name: ".info.dim + venueName.info + "\nVenue Location: ".info.dim + venueLocation.info + "\nDate: ".info.dim + eventDate.info + "\n");
         }
     })   
 };
 
 function getMovieInfo() {
-    if (input2 === " ") {
-        input2 === "Mr. Nobody";
+    if (input2 === "") {
+        input2 = "Mr. Nobody";
     };
 
     axios.get("http://www.omdbapi.com/?t=" + input2 + "&apikey=trilogy").then(
         function (response) {
             var results = response.data;
-            console.log(results);
             var title = results.Title;
             var year = results.Year;
             var imdbRating = results.imdbRating;
@@ -94,11 +114,10 @@ function getMovieInfo() {
             var country = results.Country;
             var language = results.Language;
             var plot = results.Plot;
-            var actors = results.Actors;
+            var actors = results.Actors;console.log("\n=================================================================================\n".verbose);
+            console.log(("\n " + input2.toUpperCase() + " ").inverse + "\n");
+            console.log("Title: ".info.dim + title.info + "\nRelease Year: ".info.dim + year.info + "\nIMDB Rating: ".info.dim + imdbRating.info + "\nRotten Tomatoes: ".info.dim + rating.info + "\nCountry: ".info.dim + country.info + "\nLanguage: ".info.dim + language.info + "\nPlot: ".info.dim + plot.info + "\nActors: ".info.dim + actors.info + "\n");
 
-            console.log("\n=================\n");
-            console.log("\nTitle: " + title + "\nYear: " + year + "\nIMDB Rating: " + imdbRating + "\nRotten Tomatoes: " + rating + "\nCountry: " + country + "\nLanguage: " + language + "\nPlot: " + plot + "\nActors: " + actors);
-            console.log("\n=================\n");
         }
     );
 };
@@ -108,7 +127,7 @@ function readRandomFile() {
         if (error) {
             return console.log(error);
         };
-        
+
         var dataArr = data.split(",");
         input1 = dataArr[0];
         input2 = dataArr[1];
@@ -117,3 +136,22 @@ function readRandomFile() {
 
     });
 }
+
+// swith (action) {
+//     case "save":
+//         save();
+//         break; 
+// }
+
+// METHODS
+if (!input1 && !input2 || input1 === "instructions") {
+    getInstructions();
+} else if (input1 === "spotify-this-song") {
+    getSpotifyInfo();
+} else if (input1 === "concert-this") {
+    getConcertInfo();
+} else if (input1 === "movie-this") {
+    getMovieInfo();
+} else if (input1 === "do-what-it-says") {
+    readRandomFile();
+};
