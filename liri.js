@@ -80,7 +80,7 @@ function getConcertInfo() {
                     {
                         type: "input",
                         message: (("This band isn't touring right now! Try searching for a different band.\n" + "(Press ctrl c to exit and start new search)".dim).notice + "\n"),
-                        name: "new-band",
+                        name: "newBand",
                     }
                 ]).then(function(inquirerResponse) {
                     input2 = inquirerResponse.newBand;
