@@ -1,41 +1,36 @@
 # LIRI-node-app
-LIRI is a Language Interpretation and Recognition Interface. LIRI will be a command line node app that takes in parameters and gives you back data.
+LIRI is a Language Interpretation and Recognition Interface. LIRI will be a command line node app that takes in parameters and gives you back data, particularly about songs, concerts and movies!
 
-### Before You Begin
+Video Demonstration: https://drive.google.com/file/d/1m2VL4Jj1oYI-Wg96XBpOGp1JH4QGp68h/view
 
-1. LIRI will search Spotify for songs, Bands in Town for concerts, and OMDB for movies.
+### App Set-Up
+LIRI searches <strong>Spotify</strong> for songs, <strong>Bands in Town</strong> for concerts, and <strong>OMDB</strong> for movies. Thanks you to NPM packages, particularly the `axios` package to the Bands in Town, Spotify and OMDB APIs that powered this application and returned desired data.
 
-2. Make a new GitHub repository called liri-node-app and clone it to your computer.
-
-3. To retrieve the data that will power this app, you'll need to send requests using the `axios` package to the Bands in Town, Spotify and OMDB APIs. You'll find these Node packages crucial for your assignment.
+## Node packages
+### Primary
 
    * [Node-Spotify-API](https://www.npmjs.com/package/node-spotify-api)
 
    * [Axios](https://www.npmjs.com/package/axios)
 
-     * You'll use Axios to grab data from the [OMDB API](http://www.omdbapi.com) and the [Bands In Town API](http://www.artists.bandsintown.com/bandsintown-api)
+     * Axios is used to grab data from the [OMDB API](http://www.omdbapi.com) and the [Bands In Town API](http://www.artists.bandsintown.com/bandsintown-api)
 
    * [Moment](https://www.npmjs.com/package/moment)
 
    * [DotEnv](https://www.npmjs.com/package/dotenv)
    
-## Submission Guide
+### Secondary
 
-Create and use a standard GitHub repository. As this is a CLI App, it cannot be deployed to GitHub pages or Heroku. This time you'll need to include screenshots, a GIF, and/or a video showing us that you have the app working with no bugs. You can include these screenshots/GIFs or a link to a video in a `README.md` file.
+  * [inquirer](https://www.npmjs.com/package/inquirer)
+  * [fs](https://www.npmjs.com/package/fs)
+  * [colors](https://www.npmjs.com/package/colors)
 
-* Include screenshots (or a GIF/Video) of the typical user flow of your application. Make sure to include the use of Spotify, Bands in Town, and OMDB.
+## Future Development
+- including confirm-validated prompts using inquirer
+`inquirer.registerPrompt('confirm-validated', require('inquirer-confirm-validated'));`
 
-* Include any other screenshots you deem necessary to help someone who has never been introduced to your application understand the purpose and function of it. This is how you will communicate to potential employers/other developers in the future what you built and why, and to show how it works.
-
-* Because screenshots (and well-written READMEs) are extremely important in the context of GitHub, this will be part of the grading.
-
-If you haven't written a markdown file yet, [click here for a rundown](https://guides.github.com/features/mastering-markdown/), or just take a look at the raw file of these instructions.
-
-### Submission on BCS
-
-* Please submit the link to the Github Repository!
-
-### Instructions
+__________________________________
+### How to Use Liri
 
 1. Navigate to the root of your project and run `npm init -y` &mdash; this will initialize a `package.json` file for your project. The `package.json` file is required for installing third party npm packages and saving their version numbers. If you fail to initialize a `package.json` file, it will be troublesome, and at times almost impossible for anyone else to run your code after cloning your project.
 
@@ -187,31 +182,10 @@ require("dotenv").config();
 
 * Do not overwrite your file each time you run a command.
 
-### Reminder: Submission on BCS
-
-* Please submit the link to the Github Repository!
-
-- - -
-
-### Minimum Requirements
-
-Attempt to complete homework assignment as described in instructions. If unable to complete certain portions, please pseudocode these portions to describe what remains to be completed. Adding a README.md as well as adding this homework to your portfolio are required as well and more information can be found below.
-
-- - -
-
 ### Create a README.md
-
-Add a `README.md` to your repository describing the project. Here are some resources for creating your `README.md`. Here are some resources to help you along the way:
-
-* [About READMEs](https://help.github.com/articles/about-readmes/)
-
-* [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
-
-- - -
 
 ### Add To Your Portfolio
 
-After completing the homework please add the piece to your portfolio. Make sure to add a link to your updated portfolio in the comments section of your homework so the TAs can easily ensure you completed this step when they are grading the assignment. To receive an 'A' on any assignment, you must link to it from your portfolio.
 
 - - -
 
