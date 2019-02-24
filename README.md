@@ -112,6 +112,4 @@ liri.js takes in one of the following commands:
 2. Include confirm-validated prompts using inquirer
 `inquirer.registerPrompt('confirm-validated', require('inquirer-confirm-validated'));`
 
-### Add To Your Portfolio
-
 
