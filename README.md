@@ -74,7 +74,7 @@ liri.js takes in one of the following commands:
     ```
     * Name of the venue
     * Venue location
-    * Date of the Event (use moment to format this as "MM/DD/YYYY")
+    * Date of the Event (moment is used to format this as "MM/DD/YYYY")
     ```
     <em>*If a band/artist isn't not provided or if the band/artist isn't touring, `inquirer` will prompt you to enter a new band/artist or exit out of the command so you can conduct a different search.</em>
     
