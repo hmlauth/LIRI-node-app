@@ -135,9 +135,19 @@ function readRandomFile() {
 
         var dataArr = data.split(",");
         input1 = dataArr[0];
-        input2 = dataArr[1];
+        input2 = dataArr[1].replace(/['"]+/g, '');
+        /* Need to remove quotes from string
+        (resource: https://stackoverflow.com/questions/19156148/i-want-to-remove-double-quotes-from-a-string) */
 
-        getSpotifyInfo(input2);
+        if (input1 === "spotify-this-song") {
+            getSpotifyInfo(input2);
+        } else if (input1 === "concert-this") {
+            getConcertInfo(input2);
+        } else if (input1 === "movie-this") {
+            getMovieInfo(input2);
+        } else if (input1 === "do-what-it-says") {
+            readRandomFile(input2);
+        };
 
         addToLog(input1, input2);
     });

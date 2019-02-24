@@ -1,10 +1,17 @@
 spotify-this-song: Move that Body;
 spotify-this-song: The Sign, Ace of Base;
-concert-this: ariana grande;
+spotify-this-song: I Want It That Way;
+spotify-this-song: I Want It That Way;
+concert-this: Taylor Swift;
 concert-this: Maroon 5;
-movie-this: Die Hard;
+concert-this: ariana grande;
+concert-this: backstreet boys;
+movie-this: Minions;
+movie-this: Gladiator;
 movie-this: Mr. Nobody;
-spotify-this-song: "I Want it That Way";
-spotify-this-song: "I Want it That Way";
-
-every command has been logged, if you hadn't noticed yet! Now you have a track record :) Thanks for playing!
+movie-this: Gladiator;
+movie-this: Gladiator;
+movie-this: Mr. Nobody;
+movie-this: Mr. Nobody;
+movie-this: Mr. Nobody;
+movie-this: Mr. Nobody;
