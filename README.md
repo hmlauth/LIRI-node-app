@@ -1,9 +1,7 @@
 # LIRI-node-app
-LIRI is a Language Interpretation and Recognition Interface. More specifically, LIRI is a command line node app that takes in parameters and gives you back data about songs, concerts and movies!
+LIRI is a Language Interpretation and Recognition Interface. More specifically, LIRI is a command line node app that takes in parameters and gives you back data about songs, concerts and movies! If you want to keep the data, "log" it so a txt file for later access.
 
-<strong> Video Demonstrations:</strong> 
-- https://drive.google.com/file/d/1sT4-YQOKWE5hORHVrJRwLY-f9Al2Zhp0/view (Duration: 8:54 min)
-- https://drive.google.com/file/d/1eev4xJN7QMsuTxklyShg4R8pJVTFoxXt/view (Duration: 1:04 min)
+<strong> Video Demonstration:</strong>
 
 ## Set-Up
 LIRI is powered by and styled with NPM packages! After running `npm init -y` &mdash; to initialize the `package.json` file &mdash; proceed installing all of the following node packages:
@@ -69,7 +67,7 @@ liri.js takes in one of the following commands:
 ### What Each Command Does
 
 1. `node liri.js concert-this <artist/band name here>`
-- This will search the Bands in Town Artist Events API (`"https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"`) for an artist and render the following information about each event to the terminal/bach window:
+- This will search the Bands in Town Artist Events API (`"https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"`) for an artist and render the following information about each event to the terminal/bash window:
     
     ```
     * Name of the venue
@@ -107,9 +105,23 @@ liri.js takes in one of the following commands:
 4. `node liri.js do-what-it-says`
 - Using the `fs` Node package, LIRI will take the text inside of `random.txt` and then use it to call one of LIRI's commands. This will run for any of the commands.
 
-### Future Development
-1. Log output of each query to `log.txt` file
-2. Include confirm-validated prompts using inquirer
-`inquirer.registerPrompt('confirm-validated', require('inquirer-confirm-validated'));`
+5. `node liri.js read-log` 
+- This will display the `log.txt` file in the terminal/bash window.
 
+6. `node liri.js clear-log`
+- This will clear all logged outputs in the `log.txt` file.
+
+### Future Development
+1. Format the display of the `log.txt` in terminal/bash window when `read-log` command is initiated.
+
+2. Display output(s) of `random.txt` file using `do-what-it-says` regardless of the number of commands listed and/or volume. 
+```
+movie-this,"Gladiator",concert-this,"Sting",movie-this,"Friday Night Lights",movie-this,"A Star is Born","spotify-this-song,"I Will Always Love you", concert-this,"The Eagles"
+```
+   * For example, the below text file would output:
+        - Movie information for <em>Gladiator</em>, <em>Friday Night Lights</em>, and <em>A Start is Born</em>,
+        - Concert information for <em>Sting</em> and <em>The Eagles</em>, and 
+        - Song information for <em>I Will Always Love You</em>:
+
+   * Using arrow keys, user will be able to review each selection and hit enter to save to `log.txt` or space bar to delete. If a selection is made, the option will be deleted from the `random.txt` file, and if not, the option will remain in the `random.txt` file.
 
