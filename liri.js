@@ -7,7 +7,6 @@ moment().format();
 var Spotify = require("node-spotify-api");
 var fs = require("fs");
 var inquirer = require("inquirer");
-inquirer.registerPrompt('confirm-validated', require('inquirer-confirm-validated'));
 
 // inputs
 var input1 = process.argv[2];
@@ -52,15 +51,29 @@ function getSpotifyInfo() {
         console.log("Preview Song: ".info.dim + previewLink.info);
         console.log("Album: ".info.dim + album.info + "\n");
 
-        addToLog();
-        fs.appendFile("log.txt", 
-            "\n\tArtist: " + artist + "\n\tSong: " + song + "\n\tPreview Song: " + previewLink + "\n\tAlbum: " + album,
-            function(err) {
-                if (err) {
-                    return console.log(err);
+        inquirer
+            .prompt ([
+                {
+                    type: "list",
+                    message: (("Would you like to log this song?").notice + "\n"),
+                    choices: ["Yes","No"],
+                    name: "saveSong",
                 }
-            }
-        );
+            ]).then(function(inquirerResponse) {
+                if (inquirerResponse.saveSong === "Yes") {
+                    addToLog();
+                    fs.appendFile("log.txt", 
+                        "\n\tArtist: " + artist + "\n\tSong: " + song + "\n\tPreview Song: " + previewLink + "\n\tAlbum: " + album,
+                        function(err) {
+                            if (err) {
+                                return console.log(err);
+                            }
+                        }
+                    );
+                } else {
+                    newSearch();
+                }
+            })
 
     }).catch(function (err) {
         console.log(err);
@@ -106,7 +119,7 @@ function getConcertInfo() {
             .prompt ([
                 {
                     type: "list",
-                    message: (("Would you like to log this information?").notice + "\n"),
+                    message: (("Would you like to log this concert?").notice + "\n"),
                     choices: ["Yes","No"],
                     name: "saveBand",
                 }
@@ -121,7 +134,9 @@ function getConcertInfo() {
                             }
                         }
                     );
-                }
+                } else {
+                    newSearch();
+                };
             })
 
         }
@@ -145,19 +160,32 @@ function getMovieInfo() {
             var plot = results.Plot;
             var actors = results.Actors;
             console.log("\n=================================================================================\n".verbose);
-            console.log(("\n " + input2.toUpperCase() + " ").inverse + "\n");
+            console.log((" " + input2.toUpperCase() + " ").inverse + "\n");
             console.log("Title: ".info.dim + title.info + "\nRelease Year: ".info.dim + year.info + "\nIMDB Rating: ".info.dim + imdbRating.info + "\nRotten Tomatoes: ".info.dim + rating.info + "\nCountry: ".info.dim + country.info + "\nLanguage: ".info.dim + language.info + "\nPlot: ".info.dim + plot.info + "\nActors: ".info.dim + actors.info + "\n");
 
-            addToLog();
-            fs.appendFile("log.txt", 
-                "\n\tTitle: " + title + "\n\tRelease Year: " + year + "\n\tIMDB Rating: " + imdbRating + "\n\tRotten Tomatoes: " + rating + "\n\tCountry: " + country + "\n\tLanguage: " + language + "\n\tPlot: " + plot + "\n\tActors: " + actors + "\n\t",
-                function(err) {
-                    if (err) {
-                        return console.log(err);
-                    }
+            inquirer
+            .prompt ([
+                {
+                    type: "list",
+                    message: (("Would you like to log this movie?").notice + "\n"),
+                    choices: ["Yes","No"],
+                    name: "saveMovie",
                 }
-            );
-
+            ]).then(function(inquirerResponse) {
+                if (inquirerResponse.saveMovie === "Yes") {
+                    addToLog();
+                    fs.appendFile("log.txt", 
+                        "\n\tTitle: " + title + "\n\tRelease Year: " + year + "\n\tIMDB Rating: " + imdbRating + "\n\tRotten Tomatoes: " + rating + "\n\tCountry: " + country + "\n\tLanguage: " + language + "\n\tPlot: " + plot + "\n\tActors: " + actors + "\n\t",
+                        function(err) {
+                            if (err) {
+                                return console.log(err);
+                            }
+                        }
+                    );
+                } else {
+                    newSearch();
+                };
+            })
         }
     );
 };
@@ -183,7 +211,6 @@ function readRandomFile() {
         } else if (input1 === "do-what-it-says") {
             readRandomFile(input2);
         };
-
     });
 }
 
@@ -195,7 +222,12 @@ function addToLog() {
             return console.log(err);
         }
     });
+    console.log("\n This information has been logged! \n".warn.inverse.bold)
 };
+
+function newSearch(){
+    console.log("\n Try another search! \n".warn.bold);
+}
 
 function readLog() {
 
@@ -232,6 +264,7 @@ function clearLog() {
       
       });
 }
+
 // METHODS
 if (!input1 && !input2 || input1 === "instructions") {
     getInstructions();

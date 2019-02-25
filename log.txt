@@ -1,0 +1,79 @@
+
+
+'node liri.js spotify-this-song red'
+	Artist: Offset
+	Song: Red Room
+	Preview Song: https://open.spotify.com/track/2MJdgSby3DtSS7bUJx2cly
+	Album: Red Room
+
+'node liri.js spotify-this-song red'
+	Artist: Offset
+	Song: Red Room
+	Preview Song: https://open.spotify.com/track/2MJdgSby3DtSS7bUJx2cly
+	Album: Red Room
+
+'node liri.js spotify-this-song red'
+
+'node liri.js spotify-this-song red'
+	Artist: Offset
+	Song: Red Room
+	Preview Song: https://open.spotify.com/track/2MJdgSby3DtSS7bUJx2cly
+	Album: Red Room
+
+'node liri.js spotify-this-song red'
+	Artist: Offset
+	Song: Red Room
+	Preview Song: https://open.spotify.com/track/2MJdgSby3DtSS7bUJx2cly
+	Album: Red Room
+
+'node liri.js spotify-this-song red'
+	Artist: Offset
+	Song: Red Room
+	Preview Song: https://open.spotify.com/track/2MJdgSby3DtSS7bUJx2cly
+	Album: Red Room
+
+'node liri.js movie-this Minions'
+	Title: Minions
+	Release Year: 2015
+	IMDB Rating: 6.4
+	Rotten Tomatoes: 56%
+	Country: USA
+	Language: English, Spanish
+	Plot: Minions Stuart, Kevin, and Bob are recruited by Scarlet Overkill, a supervillain who, alongside her inventor husband Herb, hatches a plot to take over the world.
+	Actors: Sandra Bullock, Jon Hamm, Michael Keaton, Allison Janney
+	
+
+'node liri.js movie-this Minions'
+	Title: Minions
+	Release Year: 2015
+	IMDB Rating: 6.4
+	Rotten Tomatoes: 56%
+	Country: USA
+	Language: English, Spanish
+	Plot: Minions Stuart, Kevin, and Bob are recruited by Scarlet Overkill, a supervillain who, alongside her inventor husband Herb, hatches a plot to take over the world.
+	Actors: Sandra Bullock, Jon Hamm, Michael Keaton, Allison Janney
+	
+
+'node liri.js movie-this Gladiator' 
+
+'node liri.js movie-this Gladiator'
+	Title: Gladiator
+	Release Year: 2000
+	IMDB Rating: 8.5
+	Rotten Tomatoes: 76%
+	Country: USA, UK
+	Language: English
+	Plot: A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.
+	Actors: Russell Crowe, Joaquin Phoenix, Connie Nielsen, Oliver Reed
+	
+
+'node liri.js movie-this Gladiator'
+	Title: Gladiator
+	Release Year: 2000
+	IMDB Rating: 8.5
+	Rotten Tomatoes: 76%
+	Country: USA, UK
+	Language: English
+	Plot: A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.
+	Actors: Russell Crowe, Joaquin Phoenix, Connie Nielsen, Oliver Reed
+	
