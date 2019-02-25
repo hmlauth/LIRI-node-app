@@ -1,17 +1,12 @@
-spotify-this-song: Move that Body;
-spotify-this-song: The Sign, Ace of Base;
-spotify-this-song: I Want It That Way;
-spotify-this-song: I Want It That Way;
-concert-this: Taylor Swift;
-concert-this: Maroon 5;
-concert-this: ariana grande;
-concert-this: backstreet boys;
-movie-this: Minions;
-movie-this: Gladiator;
-movie-this: Mr. Nobody;
-movie-this: Gladiator;
-movie-this: Gladiator;
-movie-this: Mr. Nobody;
-movie-this: Mr. Nobody;
-movie-this: Mr. Nobody;
-movie-this: Mr. Nobody;
+
+
+Search Command: movie-this Gladiator
+	Title: Gladiator
+	Release Year: 2000
+	IMDB Rating: 8.5
+	Rotten Tomatoes: 76%
+	Country: USA, UK
+	Language: English
+	Plot: A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.
+	Actors: Russell Crowe, Joaquin Phoenix, Connie Nielsen, Oliver Reed
+	

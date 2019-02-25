@@ -46,22 +46,24 @@ function getSpotifyInfo() {
         var album = response.tracks.items[0].album.name;
 
         console.log("\n=================================================================================\n".verbose);
-        var display = (" " + input2.toUpperCase() + " ").inverse;
-        var artist = "Artist: ".info.dim + artist.info;
-        var song = "Song: ".info.dim + song.info;
-        var previewLink = "Preview Song: ".info.dim + previewLink.info;
-        var album = "Album: ".info.dim + album.info;
-        console.log(display + "\n");
-        console.log(artist);
-        console.log(song);
-        console.log(previewLink);
-        console.log(album + "\n");
+        console.log((" " + input2.toUpperCase() + " ").inverse + "\n");
+        console.log("Artist: ".info.dim + artist.info);
+        console.log("Song: ".info.dim + song.info);
+        console.log("Preview Song: ".info.dim + previewLink.info);
+        console.log("Album: ".info.dim + album.info + "\n");
 
-        addToLog(input1, input2);
+        addToLog();
+            fs.appendFile("log.txt", 
+                "\n\tArtist: " + artist + "\n\tSong: " + song + "\n\tPreview Song: " + previewLink + "\n\tAlbum: " + album,
+                function(err) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                }
+            );
+    }).catch(function (err) {
+        console.log(err);
 
-    })
-        .catch(function (err) {
-            console.log(err);
         });
 }
 
@@ -97,7 +99,15 @@ function getConcertInfo() {
         console.log((" " + input2.toUpperCase() + "'s next concert is at: ").inverse);
         console.log("\nVenue Name: ".info.dim + venueName.info + "\nVenue Location: ".info.dim + venueLocation.info + "\nDate: ".info.dim + eventDate.info + "\n");
 
-        addToLog(input1, input2);
+        addToLog();
+            fs.appendFile("log.txt", 
+                "\n\tVenue Name: " + venueName + "\n\tVenue Location: " + venueLocation + "\n\tDate: " + eventDate,
+                function(err) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                }
+            );
 
         }
     })   
@@ -122,7 +132,16 @@ function getMovieInfo() {
             console.log(("\n " + input2.toUpperCase() + " ").inverse + "\n");
             console.log("Title: ".info.dim + title.info + "\nRelease Year: ".info.dim + year.info + "\nIMDB Rating: ".info.dim + imdbRating.info + "\nRotten Tomatoes: ".info.dim + rating.info + "\nCountry: ".info.dim + country.info + "\nLanguage: ".info.dim + language.info + "\nPlot: ".info.dim + plot.info + "\nActors: ".info.dim + actors.info + "\n");
 
-            addToLog(input1, input2);
+            addToLog();
+            fs.appendFile("log.txt", 
+                "\n\tTitle: " + title + "\n\tRelease Year: " + year + "\n\tIMDB Rating: " + imdbRating + "\n\tRotten Tomatoes: " + rating + "\n\tCountry: " + country + "\n\tLanguage: " + language + "\n\tPlot: " + plot + "\n\tActors: " + actors + "\n\t",
+                function(err) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                }
+            );
+
         }
     );
 };
@@ -136,7 +155,7 @@ function readRandomFile() {
         var dataArr = data.split(",");
         input1 = dataArr[0];
         input2 = dataArr[1].replace(/['"]+/g, '');
-        /* Need to remove quotes from string
+        /* Remove quotes from string
         (resource: https://stackoverflow.com/questions/19156148/i-want-to-remove-double-quotes-from-a-string) */
 
         if (input1 === "spotify-this-song") {
@@ -149,14 +168,15 @@ function readRandomFile() {
             readRandomFile(input2);
         };
 
-        addToLog(input1, input2);
     });
 }
 
-function addToLog(input1, input2) {
-    fs.appendFile("log.txt", input1 + ": " + input2 + ";\n", function(err) {
+function addToLog() {
+    fs.appendFile("log.txt", 
+    "\n\nSearch Command: " + input1 + " " + input2, 
+    function(err) {
         if (err) {
-          return console.log(err);
+            return console.log(err);
         }
     });
 };  
