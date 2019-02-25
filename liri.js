@@ -84,63 +84,75 @@ function getSpotifyInfo() {
 function getConcertInfo() {
     if (input2 === "") {
         console.log("\n=================================================================================\n".verbose);
-        console.log(" Please enter an artist's name. ".warn.bold.bgBlack + "\n")
-    }
-    axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=codingbootcamp").then(function (response) {
-        var results = response.data;
-        if (response.data.length === 0) {
-            console.log("\n=================================================================================\n".verbose);
-            inquirer
+        inquirer
                 .prompt ([
                     {
                         type: "input",
-                        message: (("This band isn't touring right now! Try searching for a different band.\n" + "(Press ctrl c to exit and start new search)".dim).notice + "\n"),
-                        name: "newBand",
+                        message: "Please enter an artist's name.".warn.bold.bgBlack + "\n",
+                        name: "searchBand",
                     }
                 ]).then(function(inquirerResponse) {
-                    input2 = inquirerResponse.newBand;
+                    input2 = inquirerResponse.searchBand;
                     getConcertInfo(input2);
                 })
-        } else {
-
-            for (i = 0; i < results.length; i++) {
-                var currentResult = results[i];
-                var venueName = currentResult.venue.name;
-                var venueLocation = currentResult.venue.city + ", " + currentResult.venue.region + ", " + currentResult.venue.country;
-                var eventDate = moment(currentResult.datetime);
-                eventDate = eventDate.format("MM/DD/YYYY");
-            }
-
-        console.log("\n=================================================================================\n".verbose);
-        console.log((" " + input2.toUpperCase() + "'s next concert is at: ").inverse);
-        console.log("\nVenue Name: ".info.dim + venueName.info + "\nVenue Location: ".info.dim + venueLocation.info + "\nDate: ".info.dim + eventDate.info + "\n");
-
-        inquirer
-            .prompt ([
-                {
-                    type: "list",
-                    message: (("Would you like to log this concert?").notice + "\n"),
-                    choices: ["Yes","No"],
-                    name: "saveBand",
-                }
-            ]).then(function(inquirerResponse) {
-                if (inquirerResponse.saveBand === "Yes") {
-                    addToLog();
-                    fs.appendFile("log.txt", 
-                        "\n\tVenue Name: " + venueName + "\n\tVenue Location: " + venueLocation + "\n\tDate: " + eventDate,
-                        function(err) {
-                            if (err) {
-                                return console.log(err);
-                            }
+    } else {
+        axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=codingbootcamp").then(function (response) {
+            var results = response.data;
+            if (response.data.length === 0) {
+                console.log("\n=================================================================================\n".verbose);
+                inquirer
+                    .prompt ([
+                        {
+                            type: "input",
+                            message: (("This band isn't touring right now! Try searching for a different band.\n" + "(Press ctrl c to exit and start new search)".dim).notice + "\n"),
+                            name: "newBand",
                         }
-                    );
-                } else {
-                    newSearch();
-                };
-            })
+                    ]).then(function(inquirerResponse) {
+                        input2 = inquirerResponse.newBand;
+                        getConcertInfo(input2);
+                    })
+            } else {
 
-        }
-    })   
+                for (i = 0; i < results.length; i++) {
+                    var currentResult = results[i];
+                    var venueName = currentResult.venue.name;
+                    var venueLocation = currentResult.venue.city + ", " + currentResult.venue.region + ", " + currentResult.venue.country;
+                    var eventDate = moment(currentResult.datetime);
+                    eventDate = eventDate.format("MM/DD/YYYY");
+                }
+
+            console.log("\n=================================================================================\n".verbose);
+            console.log((" " + input2.toUpperCase() + "'s next concert is at: ").inverse);
+            console.log("\nVenue Name: ".info.dim + venueName.info + "\nVenue Location: ".info.dim + venueLocation.info + "\nDate: ".info.dim + eventDate.info + "\n");
+
+            inquirer
+                .prompt ([
+                    {
+                        type: "list",
+                        message: (("Would you like to log this concert?").notice + "\n"),
+                        choices: ["Yes","No"],
+                        name: "saveBand",
+                    }
+                ]).then(function(inquirerResponse) {
+                    if (inquirerResponse.saveBand === "Yes") {
+                        addToLog();
+                        fs.appendFile("log.txt", 
+                            "\n\tVenue Name: " + venueName + "\n\tVenue Location: " + venueLocation + "\n\tDate: " + eventDate,
+                            function(err) {
+                                if (err) {
+                                    return console.log(err);
+                                }
+                            }
+                        );
+                    } else {
+                        newSearch();
+                    };
+                });
+            };
+        }).catch(function (error) {
+            console.log("There is an error");
+        });
+    }   
 };
 
 function getMovieInfo() {
@@ -187,7 +199,9 @@ function getMovieInfo() {
                 };
             })
         }
-    );
+    ).catch(function (error) {
+        console.log("There is an error");
+      });
 };
 
 function readRandomFile() {
