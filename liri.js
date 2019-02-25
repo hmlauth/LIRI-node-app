@@ -240,12 +240,14 @@ function readLog() {
         }
 
         console.log("\n=================================================================================\n".verbose);
-
-        // Then split it by commas (to make it more readable)
-        var dataArr = data.split(":");
-
-        // We will then print the contents of data
-        console.log(("Saved Information: ".warn.inverse.bold + dataArr + "\n").warn);
+        if (!data) {
+            readEmptyLog();
+        } else {
+            // Then split it by commas (to make it more readable)
+            var dataArr = data.split(":");
+            // We will then print the contents of data
+            console.log(("Saved Information: ".warn.inverse.bold + dataArr + "\n").warn);
+        }
 
       });
 
@@ -260,9 +262,13 @@ function clearLog() {
           return console.log(err);
         }
       
-        console.log("\n All saved information has been cleared. ".notice.inverse + "\n");
+        console.log("\n Log has been successfully cleared. ".notice.inverse + "\n");
       
       });
+}
+
+function readEmptyLog() {
+    console.log("Log is currently empty\n".input);
 }
 
 // METHODS
