@@ -3,7 +3,7 @@ LIRI is a Language Interpretation and Recognition Interface. More specifically, 
 
 <strong> Video Demonstrations:</strong> 
 - https://drive.google.com/file/d/1sT4-YQOKWE5hORHVrJRwLY-f9Al2Zhp0/view (Duration: 8:54 min)
-- https://drive.google.com/file/d/1sT4-YQOKWE5hORHVrJRwLY-f9Al2Zhp0/view (Duration: 1:04 min)
+- https://drive.google.com/file/d/1eev4xJN7QMsuTxklyShg4R8pJVTFoxXt/view (Duration: 1:04 min)
 
 ## Set-Up
 LIRI is powered by and styled with NPM packages! After running `npm init -y` &mdash; to initialize the `package.json` file &mdash; proceed installing all of the following node packages:
