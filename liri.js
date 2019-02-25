@@ -53,17 +53,18 @@ function getSpotifyInfo() {
         console.log("Album: ".info.dim + album.info + "\n");
 
         addToLog();
-            fs.appendFile("log.txt", 
-                "\n\tArtist: " + artist + "\n\tSong: " + song + "\n\tPreview Song: " + previewLink + "\n\tAlbum: " + album,
-                function(err) {
-                    if (err) {
-                        return console.log(err);
-                    }
+        fs.appendFile("log.txt", 
+            "\n\tArtist: " + artist + "\n\tSong: " + song + "\n\tPreview Song: " + previewLink + "\n\tAlbum: " + album,
+            function(err) {
+                if (err) {
+                    return console.log(err);
                 }
-            );
+            }
+        );
+
     }).catch(function (err) {
         console.log(err);
-
+        
         });
 }
 
@@ -88,6 +89,7 @@ function getConcertInfo() {
                     getConcertInfo(input2);
                 })
         } else {
+
             for (i = 0; i < results.length; i++) {
                 var currentResult = results[i];
                 var venueName = currentResult.venue.name;
@@ -95,19 +97,32 @@ function getConcertInfo() {
                 var eventDate = moment(currentResult.datetime);
                 eventDate = eventDate.format("MM/DD/YYYY");
             }
+
         console.log("\n=================================================================================\n".verbose);
         console.log((" " + input2.toUpperCase() + "'s next concert is at: ").inverse);
         console.log("\nVenue Name: ".info.dim + venueName.info + "\nVenue Location: ".info.dim + venueLocation.info + "\nDate: ".info.dim + eventDate.info + "\n");
 
-        addToLog();
-            fs.appendFile("log.txt", 
-                "\n\tVenue Name: " + venueName + "\n\tVenue Location: " + venueLocation + "\n\tDate: " + eventDate,
-                function(err) {
-                    if (err) {
-                        return console.log(err);
-                    }
+        inquirer
+            .prompt ([
+                {
+                    type: "list",
+                    message: (("Would you like to log this information?").notice + "\n"),
+                    choices: ["Yes","No"],
+                    name: "saveBand",
                 }
-            );
+            ]).then(function(inquirerResponse) {
+                if (inquirerResponse.saveBand === "Yes") {
+                    addToLog();
+                    fs.appendFile("log.txt", 
+                        "\n\tVenue Name: " + venueName + "\n\tVenue Location: " + venueLocation + "\n\tDate: " + eventDate,
+                        function(err) {
+                            if (err) {
+                                return console.log(err);
+                            }
+                        }
+                    );
+                }
+            })
 
         }
     })   
@@ -128,7 +143,8 @@ function getMovieInfo() {
             var country = results.Country;
             var language = results.Language;
             var plot = results.Plot;
-            var actors = results.Actors;console.log("\n=================================================================================\n".verbose);
+            var actors = results.Actors;
+            console.log("\n=================================================================================\n".verbose);
             console.log(("\n " + input2.toUpperCase() + " ").inverse + "\n");
             console.log("Title: ".info.dim + title.info + "\nRelease Year: ".info.dim + year.info + "\nIMDB Rating: ".info.dim + imdbRating.info + "\nRotten Tomatoes: ".info.dim + rating.info + "\nCountry: ".info.dim + country.info + "\nLanguage: ".info.dim + language.info + "\nPlot: ".info.dim + plot.info + "\nActors: ".info.dim + actors.info + "\n");
 
@@ -173,14 +189,49 @@ function readRandomFile() {
 
 function addToLog() {
     fs.appendFile("log.txt", 
-    "\n\nSearch Command: " + input1 + " " + input2, 
+    "\n\n'node liri.js " + input1 + " " + input2 + "'", 
     function(err) {
         if (err) {
             return console.log(err);
         }
     });
-};  
+};
 
+function readLog() {
+
+    fs.readFile("log.txt", "utf8", function(error, data) {
+        // running "error" as argument to callback function is standard in node.js coding, and then pass the argument "data" (the data you care about).
+        
+        // If the code experiences any errors it will log the error to the console.
+        if (error) {
+          return console.log(error);
+        }
+
+        console.log("\n=================================================================================\n".verbose);
+
+        // Then split it by commas (to make it more readable)
+        var dataArr = data.split(":");
+
+        // We will then print the contents of data
+        console.log(("Saved Information: ".warn.inverse.bold + dataArr + "\n").warn);
+
+      });
+
+}
+
+function clearLog() {
+    fs.writeFile("log.txt",
+        "", 
+        function(err) {
+
+        if (err) {
+          return console.log(err);
+        }
+      
+        console.log("\n All saved information has been cleared. ".notice.inverse + "\n");
+      
+      });
+}
 // METHODS
 if (!input1 && !input2 || input1 === "instructions") {
     getInstructions();
@@ -192,4 +243,8 @@ if (!input1 && !input2 || input1 === "instructions") {
     getMovieInfo();
 } else if (input1 === "do-what-it-says") {
     readRandomFile();
-};
+} else if (input1 === "read-log") {
+    readLog();
+} else if (input1 === "clear-log"){
+    clearLog();
+}
