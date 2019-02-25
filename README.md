@@ -125,3 +125,4 @@ movie-this,"Gladiator",concert-this,"Sting",movie-this,"Friday Night Lights",mov
 
    * Using arrow keys, user will be able to review each selection and hit enter to save to `log.txt` or space bar to delete. If a selection is made, the option will be deleted from the `random.txt` file, and if not, the option will remain in the `random.txt` file.
 
+3. Include date and time stamps using `moment.js` to document when information was logged to `log.txt` file.
