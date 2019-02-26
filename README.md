@@ -25,7 +25,7 @@ LIRI is powered by and styled with NPM packages! After running `npm init -y` &md
   
 ## Files
 ### `.gitignore`
-`.gitignore` file inclusive of the following lines was created to protect API keys and "secret" information.
+`.gitignore` file, inclusive of the following lines, was created to protect API keys and "secret" information.
 
 ```
 node_modules
@@ -45,7 +45,7 @@ SPOTIFY_SECRET=your-spotify-secret
 ```
 
 ### `liri.js`
-`liri.js` is the LIRI game logic and includes the following code which reads and sets any environment variables with the dotenv package and also the code required to import the `keys.js` file and access the spotify keys information.
+`liri.js` is the LIRI game logic and includes the following code, which reads and sets any environment variables with the dotenv package, and also the code required to import the `keys.js` file and access the spotify keys information.
 
 ```js
 require("dotenv").config();
@@ -54,7 +54,7 @@ var spotify = new Spotify(keys.spotify);
 ```
 
 ### `log.txt`
-`log.txt` file currently logs all command line run, however, further development will log the output of each command line run. 
+`log.txt` file logs the command line and respective output if you want. 
 
 ## How to Use Liri
 
