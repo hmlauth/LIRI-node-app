@@ -1,7 +1,8 @@
 # LIRI-node-app
 LIRI is a Language Interpretation and Recognition Interface. More specifically, LIRI is a command line node app that takes in parameters and gives you back data about songs, concerts and movies! If you want to keep the data, "log" it so a txt file for later access.
 
-<strong> Video Demonstration:</strong>
+<strong> Video Demonstration:</strong> https://drive.google.com/file/d/1VIVU_7Z66njtf5EKZJVwtRyOhwFBEAid/view (Duration: 6:34 min)
+<em>(Note: Video may take a moment to load. Please be patient).</em>
 
 ## Set-Up
 LIRI is powered by and styled with NPM packages! After running `npm init -y` &mdash; to initialize the `package.json` file &mdash; proceed installing all of the following node packages:
