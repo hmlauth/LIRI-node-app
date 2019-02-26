@@ -1,5 +1,5 @@
 # LIRI-node-app
-LIRI is a Language Interpretation and Recognition Interface. More specifically, LIRI is a command line node app that takes in parameters and gives you back data about songs, concerts and movies! If you want to keep the data, "log" it so a txt file for later access.
+LIRI is a Language Interpretation and Recognition Interface. More specifically, LIRI is a command line node app that takes in parameters and gives you back data about songs, concerts and movies! If you want to keep the data, "log" it to a txt file!
 
 <strong> Video Demonstration:</strong> https://drive.google.com/file/d/1VIVU_7Z66njtf5EKZJVwtRyOhwFBEAid/view (Duration: 6:34 min)
 <em>(Note: Video may take a moment to load. Please be patient).</em>
