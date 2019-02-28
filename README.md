@@ -119,7 +119,7 @@ liri.js takes in one of the following commands:
 ```
 movie-this,"Gladiator",concert-this,"Sting",movie-this,"Friday Night Lights",movie-this,"A Star is Born","spotify-this-song,"I Will Always Love you", concert-this,"The Eagles"
 ```
-   * For example, the below text file would output:
+   * For example, the above text file would output:
         - Movie information for <em>Gladiator</em>, <em>Friday Night Lights</em>, and <em>A Start is Born</em>,
         - Concert information for <em>Sting</em> and <em>The Eagles</em>, and 
         - Song information for <em>I Will Always Love You</em>:
